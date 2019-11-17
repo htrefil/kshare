@@ -27,7 +27,7 @@ public:
 	}
 
 	void send(packet packet) {
-		if (enet_peer_send(peer_, 0, packet.leak()) < 0)
+		if (enet_peer_send(peer_, ENET_PACKET_FLAG_RELIABLE, packet.leak()) < 0)
 			throw std::runtime_error("Failed to send packet");
 	}
 
