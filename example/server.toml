@@ -1,0 +1,6 @@
+port = 8585
+password = "123456789"
+
+[[clients]]
+name = "notebook"
+position = "left"
