@@ -42,7 +42,7 @@ public:
 		ENetAddress address;
 		address.port = port;
 
-		if (enet_address_set_host(&address, server) < 0) 
+		if (enet_address_set_host_ip(&address, server) < 0 && enet_address_set_host(&address, server) < 0) 
 			throw std::runtime_error("Failed to resolve host");
 
 		auto peer = enet_host_connect(host_, &address, 1, 0);
