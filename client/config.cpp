@@ -5,6 +5,7 @@
 config::config(const char* path) {
 	auto data = toml::parse(path);
 
+	server_ = toml::find<std::string>(data, "server");
 	port_ = toml::find<uint16_t>(data, "port");
 	password_ = toml::find<std::string>(data, "password");
 	name_ = toml::find<std::string>(data, "name");
