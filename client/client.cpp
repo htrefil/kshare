@@ -48,6 +48,8 @@ void client::handle_receive(const common::net::packet& data) {
 				peer_.data() = client_state_registered();
 
 				send(common::proto::client_msg::REGISTER, name_, context_.width(), context_.height());
+
+				common::logger().get().debug() << "Registered" << std::endl;
 				break;
 			}
 
@@ -58,6 +60,8 @@ void client::handle_receive(const common::net::packet& data) {
 				auto y_range = reader.read<std::pair<uint16_t, uint16_t>>();
 
 				peer_.data() = client_state_init(x_range, y_range);
+
+				common::logger().get().debug() << "Initialized" << std::endl;
 				break;
 			}
 
