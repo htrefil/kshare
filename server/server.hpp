@@ -5,6 +5,7 @@
 #include <common/crypto/key.hpp>
 #include <common/input/event_manager.hpp>
 #include <common/x11/context.hpp>
+#include <common/logger.hpp>
 
 #include "config.hpp"
 #include "client_state.hpp"
@@ -26,7 +27,7 @@ private:
 
 	template<typename... Args> 
 	void send(common::net::peer<client_state>& peer, const Args&... args) {
-				const auto& key = key_for(peer);
+		const auto& key = key_for(peer);
 
 		peer.send(common::proto::make_packet(key, args...));
 	}

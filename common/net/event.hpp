@@ -43,9 +43,8 @@ private:
 	template<typename>
 	friend class host;
 
-	event(event_variant variant, peer<T>& source) : variant_(std::move(variant)), source_(source) {}
+	event(event_variant variant, peer<T>& source) : event_variant(std::move(variant)), source_(source) {}
 
-	event_variant variant_;
 	peer<T>& source_;
 };
 
