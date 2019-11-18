@@ -3,4 +3,5 @@ password = "123456789"
 
 [[clients]]
 name = "notebook"
+# Allowed values are "left", "right", "top" and "bottom".
 position = "left"

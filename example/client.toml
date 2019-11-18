@@ -1,0 +1,4 @@
+server = "192.168.0.107"
+port = 8585
+password = "123456789"
+name = "notebook"
