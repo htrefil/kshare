@@ -152,14 +152,14 @@ bool server::input_callback(const input_event& event) {
 }
 
 void server::handle_connect(common::net::peer<client_state>& peer) {
-	common::logger::get().info() << peer.address() << " connected" << std::endl;
+	common::logger::get().info() << peer.address() << ": connected" << std::endl;
 
 	const auto& challenge = std::get<client_state_auth>(peer.data()).challenge();
 	send(peer, common::proto::server_msg::AUTH_CHALLENGE, challenge);
 }
 
 void server::handle_disconnect(common::net::peer<client_state>& peer) {
-	common::logger::get().info() << peer.address() << " disconnected" << std::endl;
+	common::logger::get().info() << peer.address() << ": disconnected" << std::endl;
 
 	if (current_ == &peer)
 		current_ = nullptr;
