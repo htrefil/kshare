@@ -26,7 +26,7 @@ private:
 
 	template<typename... Args> 
 	void send(common::net::peer<client_state>& peer, const Args&... args) {
-		const auto& key = key_for(peer);
+				const auto& key = key_for(peer);
 
 		peer.send(common::proto::make_packet(key, args...));
 	}

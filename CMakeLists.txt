@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(toml11_BUILD_TEST OFF)
 
-set(COMPILE_OPTIONS -Wall -pedantic -Werror)
+set(COMPILE_OPTIONS -Wall -pedantic -Werror -g)
 set(THIRDPARTY_LIBRARIES tiny-aes toml11 enet sha256 stdc++fs X11)
 
 add_subdirectory(thirdparty/aes)

@@ -128,7 +128,7 @@ void client::handle_receive(const common::net::packet& data) {
 				event.type = EV_REL;
 				event.value = value;
 
-				bool check = true;
+				auto check = true;
 				switch (action) {
 					case common::proto::mouse_action::X:
 						event.code = REL_X;

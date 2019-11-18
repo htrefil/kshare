@@ -17,7 +17,7 @@ public:
 	peer_iterator<T>& operator++() {
 		do {
 			begin_++;
-		} while (begin_ != end_ && begin_->data != nullptr);
+		} while (begin_ != end_ && !is_valid(begin_));
 
 		return *this;
 	}
@@ -30,8 +30,12 @@ private:
 	friend class host<T>;
 
 	peer_iterator(ENetPeer* begin, ENetPeer* end) : begin_(begin), end_(end) {
-		if (begin_->data == nullptr && begin_ != end_)
+		if (begin_ != end_ && !is_valid(begin_))
 			++(*this);
+	}
+
+	static bool is_valid(ENetPeer* peer) {
+		return peer->state == ENET_PEER_STATE_CONNECTED && peer->data != nullptr;
 	}
 
 	ENetPeer* begin_;
