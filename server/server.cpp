@@ -95,6 +95,7 @@ bool server::input_callback(const input_event& event) {
 						if (got) {
 							current_ = &p;
 							send(*current_, common::proto::server_msg::ENTER);
+							common::logger::get().info() << p.address() << ": entered the screen" << std::endl;
 
 							return false;
 						}
