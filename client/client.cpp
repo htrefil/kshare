@@ -90,7 +90,7 @@ void client::handle_receive(const common::net::packet& data) {
 			case common::proto::server_msg::SYNC: {
 				const auto& state = std::get<client_state_init>(peer_.data());
 				if (!state.entered())
-					throw std::runtime_error("Server sent an unexpected message");
+					break;
 
 				input_event event = { 0 };
 				event.type = EV_SYN;
@@ -102,7 +102,7 @@ void client::handle_receive(const common::net::packet& data) {
 			case common::proto::server_msg::KEY: {
 				const auto& state = std::get<client_state_init>(peer_.data());
 				if (!state.entered())
-					throw std::runtime_error("Server sent an unexpected message");
+					break;
 
 				auto press = reader.read<bool>();
 				auto code = reader.read<int32_t>();
@@ -119,7 +119,7 @@ void client::handle_receive(const common::net::packet& data) {
 			case common::proto::server_msg::MOUSE: {
 				auto& state = std::get<client_state_init>(peer_.data());
 				if (!state.entered())
-					throw std::runtime_error("Server sent an unexpected message");
+					break;
 
 				auto action = reader.read<common::proto::mouse_action>();
 				auto value = reader.read<int32_t>();
