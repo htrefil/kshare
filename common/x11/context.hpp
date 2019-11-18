@@ -1,5 +1,5 @@
-#ifndef KSHARE_X11_CONTEXT_HPP
-#define KSHARE_X11_CONTEXT_HPP
+#ifndef COMMON_X11_CONTEXT_HPP
+#define COMMON_X11_CONTEXT_HPP
 #include <cstdint>
 #include <utility>
 #include <X11/Xlib.h>
