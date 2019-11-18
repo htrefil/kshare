@@ -37,6 +37,7 @@ public:
 	~host() {
 		clear_last_event();
 
+		// FIXME: If we get destroyed with some connected clients, we get a memory leak.
 		enet_host_destroy(host_);
 	}
 

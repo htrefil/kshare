@@ -113,7 +113,7 @@ bool server::input_callback(const input_event& event) {
 					if (current_ == nullptr)
 						return true;
 
-					send(*current_, common::proto::server_msg::MOUSE, common::proto::mouse_action::WHEEL, (int32_t)event.code);
+					send(*current_, common::proto::server_msg::MOUSE, common::proto::mouse_action::WHEEL, (int32_t)event.value);
 					return false;
 
 				default:
@@ -154,7 +154,7 @@ bool server::input_callback(const input_event& event) {
 			return true;
 	}
 
-	return true;
+	return false;
 }
 
 void server::handle_connect(common::net::peer<client_state>& peer) {
