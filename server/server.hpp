@@ -5,7 +5,6 @@
 #include <common/crypto/key.hpp>
 #include <common/input/event_manager.hpp>
 #include <common/x11/context.hpp>
-#include <common/logger.hpp>
 
 #include "config.hpp"
 #include "client_state.hpp"

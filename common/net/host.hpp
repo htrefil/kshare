@@ -49,7 +49,7 @@ public:
 		if (peer == nullptr)
 			throw std::runtime_error("Failed to connect");
 
-		peer->data = new T;
+		peer->data = new class peer<T>(peer);
 		return *(class peer<T>*)peer->data;
 	}
 
