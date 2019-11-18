@@ -41,6 +41,7 @@ private:
 	common::input::event_manager event_manager_;
 	common::x11::context context_;
 	common::net::peer<client_state>* current_;
+	bool ignore_mouse_;
 };
 
 #endif

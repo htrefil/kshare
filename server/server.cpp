@@ -3,7 +3,7 @@
 
 #include "server.hpp"
 
-server::server(uint16_t port, const char* password, const client_set& clients) : host_(port, clients.length(), TIMEOUT), key_(common::crypto::make_key(password)), clients_(clients), event_manager_(std::bind(&server::input_callback, this, std::placeholders::_1), TIMEOUT), current_(nullptr) {
+server::server(uint16_t port, const char* password, const client_set& clients) : host_(port, clients.length(), TIMEOUT), key_(common::crypto::make_key(password)), clients_(clients), event_manager_(std::bind(&server::input_callback, this, std::placeholders::_1), TIMEOUT), current_(nullptr), ignore_mouse_(false) {
 	common::logger::get().info() << "Listening on port " << port << std::endl;
 }
 
@@ -65,6 +65,11 @@ bool server::input_callback(const input_event& event) {
 						send(*current_, common::proto::server_msg::MOUSE, action, (int32_t)event.value);
 
 						return false;
+					}
+
+					if (ignore_mouse_) {
+						ignore_mouse_ = false;
+						return true;
 					}
 
 					// Determine if we are entering a clients screen.
@@ -260,30 +265,7 @@ void server::handle_receive(common::net::peer<client_state>& peer, const common:
 				}
 
 				current_ = nullptr;
-
-				// Move our mouse a little so that we don't automatically enter again.
-				static constexpr uint16_t OFFSET = 5;
-
-				auto [x, y] = context_.mouse_position();
-				switch (state.position()) {
-					case client_position::TOP: 
-						y += OFFSET;
-						break;
-					
-					case client_position::BOTTOM:
-						y -= OFFSET;
-						break;
-
-					case client_position::LEFT:
-						x += OFFSET;
-						break;
-
-					case client_position::RIGHT:
-						x -= OFFSET;
-						break;
-				}
-
-				context_.set_mouse_position({ x, y });
+				ignore_mouse_ = true;
 				
 				common::logger::get().info() << peer.address() << ": left the screen" << std::endl;
 				break;
