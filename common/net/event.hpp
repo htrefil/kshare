@@ -27,7 +27,7 @@ private:
 
 	event_receive(packet data);
 
-	class packet data_;
+	packet data_;
 };
 
 using event_variant = std::variant<event_connect, event_disconnect, event_receive>;

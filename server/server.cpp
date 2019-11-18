@@ -17,7 +17,7 @@ void server::process() {
 	if (auto evt = std::get_if<common::net::event_connect>(&*event); evt != nullptr) 
 		handle_connect(event->source());
 	else if (auto evt = std::get_if<common::net::event_disconnect>(&*event); evt != nullptr) 
-		handle_connect(event->source());
+		handle_disconnect(event->source());
 	else if (auto evt = std::get_if<common::net::event_receive>(&*event); evt != nullptr) 
 		handle_receive(event->source(), evt->data());
 }
