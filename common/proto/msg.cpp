@@ -9,7 +9,7 @@ client_msg read_traits<client_msg>::read(reader& reader) {
 	using type = std::underlying_type_t<client_msg>;
 
 	auto msg = reader.read<type>();
-	if (msg < (type)client_msg::AUTH_RESPONSE || msg > (type)client_msg::REGISTER)
+	if (msg < (type)client_msg::AUTH_RESPONSE || msg > (type)client_msg::LEAVE)
 		throw read_error("Invalid client message");
 
 	return (client_msg)msg;
