@@ -35,6 +35,8 @@ public:
 	}
 
 	~host() {
+		clear_last_event();
+
 		enet_host_destroy(host_);
 	}
 
@@ -53,9 +55,13 @@ public:
 		return *(class peer<T>*)peer->data;
 	}
 
-	std::optional<event<T>> process() {
-		if (last_event_ && last_event_->type == ENET_EVENT_TYPE_DISCONNECT) 
+	void clear_last_event() {
+		if (last_event_ && last_event_->type == ENET_EVENT_TYPE_DISCONNECT)
 			delete (peer<T>*)last_event_->peer->data;
+	}
+
+	std::optional<event<T>> process() {
+		clear_last_event();	
 		
 		ENetEvent cevent;
 		if (enet_host_service(host_, &cevent, timeout_) < 0)
