@@ -6,6 +6,7 @@ Run the `build.sh` script to build the project. The resulting executables will b
 You will need at least g++ 8 and CMake.
 
 Then set up your server and client configurations, examples can be found in the `example` directory.
+Due to relying on /dev/input, both the client and server programs need to be run as root.
 
 ## Third party libraries
 - [ENet](https://github.com/lsalzman/enet) - copyright (c) 2002-2016 Lee Salzman
