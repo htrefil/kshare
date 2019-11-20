@@ -10,5 +10,6 @@ Due to relying on /dev/input, both the client and server programs need to be run
 
 ## Third party libraries
 - [ENet](https://github.com/lsalzman/enet) - copyright (c) 2002-2016 Lee Salzman
+- [TOML11](https://github.com/ToruNiina/toml11) - copyright (c) 2017 Toru Niina
 - [SHA256](https://github.com/B-Con/crypto-algorithms) - by Brad Conte
-- [Tiny AES](https://github.com/kokke) - by  kokke
+- [Tiny AES](https://github.com/kokke) - by kokke
